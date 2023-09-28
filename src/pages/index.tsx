@@ -1,12 +1,11 @@
-import { useState } from "react";
+import PrimitiveRender from "@/components/PrimitiveRender";
+import ListRender from "@/components/ListRender";
+import ObjectRender from "@/components/ObjectRender";
 
 export default function Home() {
-  const [counter, setCounter] = useState(0);
   return (
-    <main>
-      <h1>Welcome to our exercise!</h1>
-      <p data-testid="counter">{counter}</p>
-      <button onClick={() => setCounter(counter + 1)}>increase</button>
-    </main>
+    <PrimitiveRender />
+    // <ListRender />
+    // <ObjectRender />
   );
 }
