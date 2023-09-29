@@ -54,12 +54,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("fetch");
     fetchProducts(selectedCategory).then((productsResult) => {
       setProducts(productsResult);
     });
   }, [selectedCategory]);
-  console.log(products);
   return (
     <>
       <div className="flex gap-2">
