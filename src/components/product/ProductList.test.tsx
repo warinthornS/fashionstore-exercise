@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import ProductList from "./ProductList";
+import { Category } from "@/models/product";
 
 test("renders 2 products", () => {
   const products = [
@@ -9,6 +10,7 @@ test("renders 2 products", () => {
       price: 42.57,
       imageUrl:
         "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/448429/item/goods_66_448429.jpg?width=300",
+      category: Category.WOMEN,
     },
     {
       id: "91479834-ac10-42c4-87c0-4584f9083857",
@@ -16,6 +18,7 @@ test("renders 2 products", () => {
       price: 140.37,
       imageUrl:
         "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/455844/item/goods_09_455844.jpg?width=300",
+      category: Category.WOMEN,
     },
   ];
   render(<ProductList items={products} onAddProduct={() => {}} />);

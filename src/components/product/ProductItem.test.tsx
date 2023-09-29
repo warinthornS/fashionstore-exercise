@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import ProductItem from "./ProductItem";
+import { Category } from "@/models/product";
 
 test("renders product detail", () => {
   const product = {
@@ -8,6 +9,7 @@ test("renders product detail", () => {
     price: 42.57,
     imageUrl:
       "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/448429/item/goods_66_448429.jpg?width=300",
+    category: Category.WOMEN,
   };
   render(<ProductItem data={product} onAddProduct={() => {}} />);
 
