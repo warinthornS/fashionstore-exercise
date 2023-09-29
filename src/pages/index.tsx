@@ -49,14 +49,18 @@ export default function Home() {
     null
   );
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const onAddProduct = (productId: string) => {
     console.log(`add product:${productId} to the cart.`);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchProducts(selectedCategory).then((productsResult) => {
+      setIsLoading(false);
       setProducts(productsResult);
     });
+    return () => {};
   }, [selectedCategory]);
   return (
     <>
@@ -82,7 +86,11 @@ export default function Home() {
           WOMEN
         </button>
       </div>
-      <ProductList items={products} onAddProduct={onAddProduct} />
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <ProductList items={products} onAddProduct={onAddProduct} />
+      )}
     </>
   );
 }
