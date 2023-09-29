@@ -12,7 +12,7 @@ export default function Home() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          setProducts([...products, productName]);
+          setProducts([...products, { name: productName }]);
           setProductName("");
         }}
       >
