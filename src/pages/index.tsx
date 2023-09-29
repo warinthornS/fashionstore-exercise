@@ -55,11 +55,17 @@ export default function Home() {
   };
 
   useEffect(() => {
+    let isStale = false;
     setIsLoading(true);
     fetchProducts(selectedCategory).then((productsResult) => {
-      setIsLoading(false);
-      setProducts(productsResult);
+      if (!isStale) {
+        setIsLoading(false);
+        setProducts(productsResult);
+      }
     });
+    return () => {
+      isStale = true
+    }
   }, [selectedCategory]);
   return (
     <>
