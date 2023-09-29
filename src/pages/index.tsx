@@ -7,6 +7,10 @@ export default function Home() {
     { name: "Loose Cropped Jeans (Damaged)" },
     { name: "Smart Skort Solid" },
   ]);
+  const onAddProduct = (name: string) => {
+    setProducts([...products, { name }]);
+    setProductName("");
+  };
   const onRemoveProduct = (name: string) => {
     setProducts(products.filter((product) => name !== product.name));
   };
@@ -16,8 +20,7 @@ export default function Home() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          setProducts([...products, { name: productName }]);
-          setProductName("");
+          onAddProduct(productName);
         }}
       >
         <h1 className="text-2xl font-bold">Add a new product</h1>
