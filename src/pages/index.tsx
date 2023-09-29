@@ -12,6 +12,8 @@ export default function Home() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          setProducts([...products, productName]);
+          setProductName("");
         }}
       >
         <h1 className="text-2xl font-bold">Add a new product</h1>
