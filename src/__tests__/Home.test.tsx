@@ -2,12 +2,12 @@ import Home from "@/pages";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-test("add a new product", async () => {
+test("renders updated product name", async () => {
   render(<Home />);
 
   const productInput = screen.getByRole("textbox", { name: /Product name:/ });
 
-  await userEvent.type(productInput, "Skirt{enter}");
+  await userEvent.type(productInput, "Skirt");
 
-  expect(screen.getAllByRole("listitem")).toHaveLength(2);
+  expect(screen.getByTestId("result")).toHaveTextContent("Skirt");
 });

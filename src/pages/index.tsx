@@ -1,7 +1,7 @@
 import ProductList from "@/components/ProductList";
 
 export default function Home() {
-  const productName = "Skirt";
+  const productName = "";
   const products = ["Loose Cropped Jeans (Damaged)"];
 
   return (
@@ -15,7 +15,7 @@ export default function Home() {
         <div>
           <label htmlFor="product-name">Product name:</label>
           <input className="bg-slate-200" id="product-name" />
-          <p>{productName}</p>
+          <p data-testid="result">{productName}</p>
         </div>
       </form>
       <hr />
