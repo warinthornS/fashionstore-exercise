@@ -3,7 +3,9 @@ import { useState } from "react";
 
 export default function Home() {
   const [productName, setProductName] = useState("");
-  const products = [{ name: "Loose Cropped Jeans (Damaged)" }];
+  const [products, setProducts] = useState([
+    { name: "Loose Cropped Jeans (Damaged)" },
+  ]);
 
   return (
     <>
