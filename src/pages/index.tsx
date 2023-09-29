@@ -5,6 +5,7 @@ export default function Home() {
   const [productName, setProductName] = useState("");
   const [products, setProducts] = useState([
     { name: "Loose Cropped Jeans (Damaged)" },
+    { name: "Smart Skort Solid" },
   ]);
 
   return (

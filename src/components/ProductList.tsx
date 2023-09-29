@@ -8,7 +8,9 @@ const ProductList = ({ items }: ProductListProps) => {
   return (
     <ul className="list-disc list-inside">
       {items.map((item) => (
-        <li key={item.name}>{item.name}</li>
+        <li key={item.name}>
+          {item.name} <button onClick={() => {}}>❌</button>
+        </li>
       ))}
     </ul>
   );
