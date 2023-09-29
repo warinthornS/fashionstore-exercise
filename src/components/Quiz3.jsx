@@ -4,7 +4,7 @@ const Child = () => {
 
 const Quiz3 = () => {
     return (
-        <child />
+        <Child />
     )
 }
 
