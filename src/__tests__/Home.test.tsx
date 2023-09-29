@@ -11,3 +11,9 @@ test("renders updated product name", async () => {
 
   expect(screen.getByTestId("result")).toHaveTextContent("Skirt");
 });
+
+test("renders a product", async () => {
+  render(<Home />);
+
+  expect(screen.getAllByRole("listitem")).toHaveLength(1);
+});
