@@ -6,7 +6,7 @@ test("renders 2 products", () => {
     { name: "Loose Cropped Jeans (Damaged)" },
     { name: "Smart Skort Solid" },
   ];
-  render(<ProductList items={products} />);
+  render(<ProductList items={products} onRemoveProduct={() => {}} />);
 
   expect(screen.getAllByRole("listitem")).toHaveLength(2);
 });

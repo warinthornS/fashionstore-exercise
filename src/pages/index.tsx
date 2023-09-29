@@ -7,6 +7,9 @@ export default function Home() {
     { name: "Loose Cropped Jeans (Damaged)" },
     { name: "Smart Skort Solid" },
   ]);
+  const onRemoveProduct = (name: string) => {
+    setProducts(products.filter((product) => name !== product.name));
+  };
 
   return (
     <>
@@ -32,7 +35,7 @@ export default function Home() {
         </div>
       </form>
       <hr />
-      <ProductList items={products} />
+      <ProductList items={products} onRemoveProduct={onRemoveProduct} />
     </>
   );
 }
