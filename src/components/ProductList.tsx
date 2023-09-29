@@ -1,22 +1,14 @@
-import { Product } from "@/models/product";
-import ProductItem from "./ProductItem";
-
 type ProductListProps = {
-  items: Product[];
-  onAddProduct(_: string): void;
+  items: string[];
 };
 
-// 💡 a product contains {name: string, imageUrl: string, price: number}
-const ProductList = ({ items, onAddProduct }: ProductListProps) => {
+const ProductList = ({ items }: ProductListProps) => {
   return (
-    <div
-      v-else-if="productList.result.value"
-      className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
-    >
-      {items.map((item) => (
-        <ProductItem key={item.id} data={item} onAddProduct={onAddProduct} />
+    <ul className="list-disc list-inside">
+      {items.map((productName) => (
+        <li key={productName}>{productName}</li>
       ))}
-    </div>
+    </ul>
   );
 };
 
