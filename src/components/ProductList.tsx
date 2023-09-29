@@ -7,7 +7,7 @@ type ProductListProps = {
 
 const ProductList = ({ items, onRemoveProduct }: ProductListProps) => {
   return (
-    <ul className="list-disc list-inside">
+    <ol className="list-decimal list-inside">
       {items.map((item) => (
         <li key={item.name}>
           {item.name}{" "}
@@ -20,7 +20,7 @@ const ProductList = ({ items, onRemoveProduct }: ProductListProps) => {
           </button>
         </li>
       ))}
-    </ul>
+    </ol>
   );
 };
 

@@ -15,15 +15,17 @@ export default function Home() {
   const [productCount, setProductCount] = useState(2);
   const onAddProduct = (name: string) => {
     delay(() => {
-      setProducts([...products, { name }]);
+      setProducts((prevProducts) => [...prevProducts, { name }]);
       setProductName("");
-      setProductCount(productCount + 1);
+      setProductCount((prevCount) => prevCount + 1);
     });
   };
   const onRemoveProduct = (name: string) => {
     delay(() => {
-      setProducts(products.filter((product) => name !== product.name));
-      setProductCount(productCount - 1);
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => name !== product.name)
+      );
+      setProductCount((prevCount) => prevCount - 1);
     });
   };
 
