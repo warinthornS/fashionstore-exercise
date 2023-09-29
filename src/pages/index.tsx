@@ -2,7 +2,7 @@ import ProductList from "@/components/ProductList";
 
 export default function Home() {
   const productName = "";
-  const products = ["Loose Cropped Jeans (Damaged)"];
+  const products = [{ name: "Loose Cropped Jeans (Damaged)" }];
 
   return (
     <>

@@ -1,12 +1,14 @@
+import { Product } from "@/models/product";
+
 type ProductListProps = {
-  items: string[];
+  items: Product[];
 };
 
 const ProductList = ({ items }: ProductListProps) => {
   return (
     <ul className="list-disc list-inside">
-      {items.map((productName) => (
-        <li key={productName}>{productName}</li>
+      {items.map((item) => (
+        <li key={item.name}>{item.name}</li>
       ))}
     </ul>
   );
