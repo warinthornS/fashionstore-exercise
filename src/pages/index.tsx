@@ -1,18 +1,30 @@
 import ProductList from "@/components/ProductList";
 import { useState } from "react";
 
+const delay = (cb: () => void) => {
+  const ms = Math.round(Math.random() * 2000);
+  setTimeout(cb, ms);
+};
+
 export default function Home() {
   const [productName, setProductName] = useState("");
   const [products, setProducts] = useState([
     { name: "Loose Cropped Jeans (Damaged)" },
     { name: "Smart Skort Solid" },
   ]);
+  const [productCount, setProductCount] = useState(2);
   const onAddProduct = (name: string) => {
-    setProducts([...products, { name }]);
-    setProductName("");
+    delay(() => {
+      setProducts([...products, { name }]);
+      setProductName("");
+      setProductCount(productCount + 1);
+    });
   };
   const onRemoveProduct = (name: string) => {
-    setProducts(products.filter((product) => name !== product.name));
+    delay(() => {
+      setProducts(products.filter((product) => name !== product.name));
+      setProductCount(productCount - 1);
+    });
   };
 
   return (
@@ -38,6 +50,9 @@ export default function Home() {
         </div>
       </form>
       <hr />
+      <h1 className="text-2xl font-bold" data-testid="title">
+        Products {productCount}
+      </h1>
       <ProductList items={products} onRemoveProduct={onRemoveProduct} />
     </>
   );
