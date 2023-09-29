@@ -17,3 +17,14 @@ test("renders a product", async () => {
 
   expect(screen.getAllByRole("listitem")).toHaveLength(1);
 });
+
+test("add a new product", async () => {
+  render(<Home />);
+
+  const productInput = screen.getByRole("textbox", { name: /Product name:/ });
+
+  await userEvent.type(productInput, "Skirt{enter}");
+
+  expect(screen.getAllByRole("listitem")).toHaveLength(2);
+  expect(screen.getByTestId("result")).toBeEmptyDOMElement();
+});
