@@ -60,7 +60,6 @@ export default function Home() {
       setIsLoading(false);
       setProducts(productsResult);
     });
-    return () => {};
   }, [selectedCategory]);
   return (
     <>
