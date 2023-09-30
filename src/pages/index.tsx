@@ -8,6 +8,11 @@ export default function Home() {
     { name: "Smart Skort Solid" },
   ]);
 
+  const removeFn = (name: string) => {
+    let newProduct = products.filter((product) => product.name != name);
+    setProducts(newProduct);
+  };
+
   return (
     <>
       <form
@@ -32,7 +37,7 @@ export default function Home() {
         </div>
       </form>
       <hr />
-      <ProductList items={products} />
+      <ProductList items={products} removeFn={removeFn} />
     </>
   );
 }
