@@ -2,9 +2,7 @@ import ProductList from "@/components/product/ProductList";
 import { Category, Product } from "@/models/product";
 import { useEffect, useState } from "react";
 
-const fetchProducts = (
-  category: Category | null = null
-): Promise<Product[]> => {
+const fetchProducts = (): Promise<Product[]> => {
   const products = [
     {
       id: "91479834-ac10-42c4-87c0-4584f9083851",
@@ -31,23 +29,10 @@ const fetchProducts = (
       category: Category.MEN,
     },
   ];
-  if (category === null) return new Promise((resolve) => resolve(products));
-
-  const filteredProducts = products.filter(
-    (product) => product.category === category
-  );
-  const ms = Math.round(Math.random() * 5000);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(filteredProducts);
-    }, ms);
-  });
+  return new Promise((resolve) => resolve(products));
 };
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-    null
-  );
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const onAddProduct = (productId: string) => {
@@ -57,40 +42,18 @@ export default function Home() {
   useEffect(() => {
     let isStale = false;
     setIsLoading(true);
-    fetchProducts(selectedCategory).then((productsResult) => {
+    fetchProducts().then((productsResult) => {
       if (!isStale) {
         setIsLoading(false);
         setProducts(productsResult);
       }
     });
     return () => {
-      isStale = true
-    }
-  }, [selectedCategory]);
+      isStale = true;
+    };
+  }, []);
   return (
     <>
-      <div className="flex gap-2">
-        <button
-          onClick={() => {
-            setSelectedCategory(Category.MEN);
-          }}
-          className={`px-6 py-1 transition ease-in duration-200 hover:bg-blue-400 ${
-            selectedCategory === Category.MEN ? "bg-blue-500 text-white" : ""
-          } hover:text-white border-2 border-gray-900 focus:outline-none`}
-        >
-          MEN
-        </button>
-        <button
-          onClick={() => {
-            setSelectedCategory(Category.WOMEN);
-          }}
-          className={`px-6 py-1 transition ease-in duration-200 hover:bg-pink-400 ${
-            selectedCategory === Category.WOMEN ? "bg-pink-500 text-white" : ""
-          } hover:text-white border-2 border-gray-900 focus:outline-none`}
-        >
-          WOMEN
-        </button>
-      </div>
       {isLoading ? (
         "Loading..."
       ) : (
