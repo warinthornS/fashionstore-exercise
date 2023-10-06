@@ -11,12 +11,16 @@ export default function Home() {
     setProducts(products.filter((product) => name !== product.name));
   };
 
+  const onAddProduct = (name: string) => {
+    setProducts([...products, { name }]);
+  };
+
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          setProducts([...products, { name: productName }]);
+          onAddProduct(productName);
           setProductName("");
         }}
       >
