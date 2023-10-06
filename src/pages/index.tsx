@@ -1,4 +1,5 @@
 import ProductList from "@/components/product/ProductList";
+import { useCart } from "@/contexts/cart";
 import { Category, Product } from "@/models/product";
 import { useEffect, useState } from "react";
 
@@ -35,7 +36,9 @@ const fetchProducts = (): Promise<Product[]> => {
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const cart = useCart();
   const onAddProduct = (productId: string) => {
+    cart.addNumberOfItems(1);
     console.log(`add product:${productId} to the cart.`);
   };
 

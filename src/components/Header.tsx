@@ -1,7 +1,8 @@
+import { useCart } from "@/contexts/cart";
 import Link from "next/link";
-import TypingAnimation from "./TypingAnimation";
 
 const Header = () => {
+  const cart = useCart();
   return (
     <header className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -27,7 +28,7 @@ const Header = () => {
                     data-testid="cart--number-of-items"
                     className="px-1 absolute right-0 top-0 cart-badge rounded-full bg-red-600 h-4 top right p-0 m-0 text-white font-mono text-sm leading-tight text-center"
                   >
-                    0
+                    {cart.numberOfItems}
                   </span>
                 </div>
               </Link>
