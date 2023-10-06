@@ -1,23 +1,19 @@
 import ProductList from "@/components/ProductList";
-import { useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
 type Product = { name: string };
 
 const useProduct = (initialValue: Product[]) => {
   const [products, setProducts] = useState(initialValue);
-  const removeProduct = useMemo(
-    () => (name: string) => {
-      setProducts(products.filter((product) => name !== product.name));
-    },
-    [products]
-  );
+  const removeProduct = useCallback((name: string) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => name !== product.name)
+    );
+  }, []);
 
-  const addProduct = useMemo(
-    () => (name: string) => {
-      setProducts([...products, { name }]);
-    },
-    [products]
-  );
+  const addProduct = useCallback((name: string) => {
+    setProducts((prevProducts) => [...prevProducts, { name }]);
+  }, []);
 
   return { products, addProduct, removeProduct };
 };
