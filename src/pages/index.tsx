@@ -1,26 +1,34 @@
 import ProductList from "@/components/ProductList";
 import { useState } from "react";
 
-export default function Home() {
-  const [productName, setProductName] = useState("");
-  const [products, setProducts] = useState([
-    { name: "Loose Cropped Jeans (Damaged)" },
-    { name: "Smart Skort Solid" },
-  ]);
-  const onRemoveProduct = (name: string) => {
+type Product = { name: string };
+
+const useProduct = (initialValue: Product[]) => {
+  const [products, setProducts] = useState(initialValue);
+  const removeProduct = (name: string) => {
     setProducts(products.filter((product) => name !== product.name));
   };
 
-  const onAddProduct = (name: string) => {
+  const addProduct = (name: string) => {
     setProducts([...products, { name }]);
   };
+
+  return { products, addProduct, removeProduct };
+};
+
+export default function Home() {
+  const [productName, setProductName] = useState("");
+  const { products, addProduct, removeProduct } = useProduct([
+    { name: "Loose Cropped Jeans (Damaged)" },
+    { name: "Smart Skort Solid" },
+  ]);
 
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          onAddProduct(productName);
+          addProduct(productName);
           setProductName("");
         }}
       >
@@ -39,7 +47,7 @@ export default function Home() {
         </div>
       </form>
       <hr />
-      <ProductList items={products} onRemoveProduct={onRemoveProduct} />
+      <ProductList items={products} onRemoveProduct={removeProduct} />
     </>
   );
 }
